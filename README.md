@@ -119,3 +119,17 @@ The frontend will be live at:
 | DELETE | /api/products/{id}      | Delete a product by ID       |
 
 ---
+## 📸 Screenshots
+
+### 📋 Product List
+![image](https://github.com/user-attachments/assets/223c6ca1-943a-4486-a736-fc4e796b5440)
+
+
+### ➕ Add New Product
+![image](https://github.com/user-attachments/assets/5812c017-6201-43ef-8683-ced6b3c52cc2)
+
+
+### ✏️ Edit Product
+![image](https://github.com/user-attachments/assets/2485d469-a715-460e-aa4b-2efe5f3bee15)
+
+
