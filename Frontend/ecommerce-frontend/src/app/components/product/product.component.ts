@@ -37,17 +37,24 @@ export class ProductComponent {
 
   startEdit(product: Product): void {
     this.editProduct = { ...product }; // Create a copy for editing
+   
   }
 
   updateProduct(): void {
     if (this.editProduct) {
-      this.productService.updateProduct(this.editProduct.id, this.editProduct).subscribe((updatedProduct: Product) => {
-        const index = this.products.findIndex(p => p.id === updatedProduct.id);
-        if (index !== -1) {
-          this.products[index] = updatedProduct; // Update the product in the list
+      this.productService.updateProduct(this.editProduct.id, this.editProduct).subscribe(
+        (updatedProduct: Product) => {
+          const index = this.products.findIndex(p => p.id === updatedProduct.id);
+          if (index !== -1) {
+            this.products[index] = updatedProduct; // Update the product in the list
+          }
+          this.editProduct = null; // Reset edit mode
+        },
+        error => {
+          console.error('Error updating product:', error);
+          // Optionally show a user-friendly message
         }
-        this.editProduct = null; // Reset edit mode
-      });
+      );
     }
   }
 

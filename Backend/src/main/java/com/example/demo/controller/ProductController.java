@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Product;
+import com.example.demo.repo.ProductRepository;
 import com.example.demo.service.ProductService;
 
 
@@ -25,9 +26,11 @@ import com.example.demo.service.ProductService;
 @CrossOrigin(origins = "http://localhost:4200")
 public class ProductController {
     private final ProductService productService;
+    private final ProductRepository productRepository;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService,ProductRepository productRepository) {
         this.productService = productService;
+        this.productRepository=productRepository;
     }
 
     // Get all products
@@ -47,7 +50,7 @@ public class ProductController {
     // Create a new product
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        Product createdProduct = productService.createProduct(product);
+        Product createdProduct = productRepository.save(product);
         return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
     }
 

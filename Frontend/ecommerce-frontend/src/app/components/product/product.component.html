@@ -1,7 +1,8 @@
 <div class="container">
-    <h2>Product Management</h2>
-  
-    <h3>Add New Product</h3>
+
+  <!-- Section: Add Product -->
+  <section class="activity-section add-section">
+    <h2>➕ Add New Product</h2>
     <form (ngSubmit)="addProduct()">
       <input type="text" [(ngModel)]="newProduct.name" name="name" placeholder="Product Name" required />
       <input type="text" [(ngModel)]="newProduct.description" name="description" placeholder="Description" required />
@@ -9,20 +10,40 @@
       <input type="text" [(ngModel)]="newProduct.imageUrl" name="imageUrl" placeholder="Image URL" required />
       <button type="submit">Add Product</button>
     </form>
-  
-    <h3>Product List</h3>
+  </section>
+
+  <!-- Section: Product List -->
+  <section class="activity-section list-section">
+    <h2>📋 Product List</h2>
     <ul>
       <li *ngFor="let product of products">
-        <div>
+        <div style="width: 100%;">
           <h4>{{ product.name }}</h4>
           <p>{{ product.description }}</p>
-          <p>Price: ${{ product.price }}</p>
-          <img [src]="product.imageUrl" alt="{{ product.name }}" width="100" />
-          <button (click)="startEdit(product)">Edit</button>
-          <button (click)="deleteProduct(product.id)">Delete</button>
+          <p><strong>Price:</strong> ${{ product.price }}</p>
+          <img [src]="product.imageUrl" alt="{{ product.name }}" width="120" style="border-radius: 8px; margin: 10px 0;" />
+          <div style="margin-top: 10px; display: flex; gap: 10px;">
+            <button class="edit-button" (click)="startEdit(product)">✏️ Edit</button>
+            <button class="delete-button" (click)="deleteProduct(product.id)">🗑️ Delete</button>
+          </div>
         </div>
       </li>
     </ul>
-  
-    <div *ngIf="editProduct">
-     
+  </section>
+
+  <!-- Section: Edit Product -->
+  <section *ngIf="editProduct" class="activity-section edit-section">
+    <h2>✏️ Edit Product</h2>
+    <form (ngSubmit)="updateProduct()">
+      <input type="text" [(ngModel)]="editProduct.name" name="editName" placeholder="Product Name" required />
+      <input type="text" [(ngModel)]="editProduct.description" name="editDescription" placeholder="Description" required />
+      <input type="number" [(ngModel)]="editProduct.price" name="editPrice" placeholder="Price" required />
+      <input type="text" [(ngModel)]="editProduct.imageUrl" name="editImageUrl" placeholder="Image URL" required />
+      <div style="display: flex; gap: 10px; margin-top: 10px;">
+        <button type="submit" class="edit-button">✅ Update Product</button>
+        <button type="button" (click)="editProduct = null" class="delete-button">❌ Cancel</button>
+      </div>
+    </form>
+  </section>
+
+</div>
