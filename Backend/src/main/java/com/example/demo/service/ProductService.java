@@ -22,8 +22,8 @@ public class ProductService {
 
     public Product createProduct(Product product) {
         return productRepository.save(product);
+        
     }
-
     public Product updateProduct(Long id, Product productDetails) {
         Product product = productRepository.findById(id).orElseThrow();
         product.setName(productDetails.getName());

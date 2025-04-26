@@ -3,11 +3,12 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 
 @Entity
-
+@Table
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String description;
     private double price;
@@ -15,9 +16,7 @@ public class Product {
 	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
 	public String getName() {
 		return name;
 	}
